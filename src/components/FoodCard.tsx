@@ -26,9 +26,8 @@ const FoodCard = ({ food, mealType }: FoodCardProps) => {
     
     // Show confirmation toast
     toast({
-      title: "Added to meal",
-      description: `${quantity} serving(s) of ${food.name} added to ${mealType}`,
-      duration: 2000,
+      title: `Added to ${mealType}`,
+      description: `${quantity} serving(s) of ${food.name} added`,
     });
     
     // Reset after a short delay
@@ -43,6 +42,15 @@ const FoodCard = ({ food, mealType }: FoodCardProps) => {
 
   return (
     <Card className="glass-card overflow-hidden h-full flex flex-col">
+      {food.image && (
+        <div className="h-32 w-full overflow-hidden">
+          <img 
+            src={food.image} 
+            alt={food.name} 
+            className="h-full w-full object-cover transition-transform hover:scale-110 duration-700"
+          />
+        </div>
+      )}
       <div className="p-4 flex flex-col h-full">
         <div className="flex items-start justify-between mb-2">
           <div>

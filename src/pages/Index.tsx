@@ -28,14 +28,20 @@ const Index = () => {
               <FeatureCard 
                 title="Track South Asian Foods" 
                 description="Comprehensive database of desi foods with accurate nutritional information."
+                imageSrc="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9"
+                imageAlt="South Asian food variety"
               />
               <FeatureCard 
                 title="Personalized Goals" 
                 description="Set weight loss, maintenance or gain targets tailored to you."
+                imageSrc="https://images.unsplash.com/photo-1493962853295-0fd70327578a"
+                imageAlt="Personalized nutrition planning"
               />
               <FeatureCard 
                 title="Meal Planner" 
                 description="Plan your daily meals to meet your nutritional targets."
+                imageSrc="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1"
+                imageAlt="Meal planning and preparation"
               />
             </div>
             
@@ -49,7 +55,16 @@ const Index = () => {
           </div>
         </section>
         
-        <section className="py-12 glass-effect">
+        <section className="py-12 glass-effect relative overflow-hidden">
+          <div className="absolute inset-0 -z-10 opacity-20">
+            <div className="absolute top-0 left-0 w-full h-full">
+              <img 
+                src="https://images.unsplash.com/photo-1465379944081-7f47de8d74ac" 
+                alt="Background texture" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
           <div className="container px-4 mx-auto">
             <div className="max-w-3xl mx-auto text-center animate-fade-in">
               <h2 className="text-2xl font-bold mb-6">Get Started Today</h2>
@@ -78,12 +93,25 @@ const Index = () => {
 interface FeatureCardProps {
   title: string;
   description: string;
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
-const FeatureCard = ({ title, description }: FeatureCardProps) => (
-  <div className="glass-card p-6 rounded-xl transition-all duration-200 hover:scale-105">
-    <h3 className="text-xl font-semibold mb-3">{title}</h3>
-    <p className="text-muted-foreground">{description}</p>
+const FeatureCard = ({ title, description, imageSrc, imageAlt }: FeatureCardProps) => (
+  <div className="glass-card overflow-hidden rounded-xl transition-all duration-200 hover:scale-105">
+    {imageSrc && (
+      <div className="h-48 overflow-hidden">
+        <img 
+          src={imageSrc} 
+          alt={imageAlt || title} 
+          className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+        />
+      </div>
+    )}
+    <div className="p-6">
+      <h3 className="text-xl font-semibold mb-3">{title}</h3>
+      <p className="text-muted-foreground">{description}</p>
+    </div>
   </div>
 );
 

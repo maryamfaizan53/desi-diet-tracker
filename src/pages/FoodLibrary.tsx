@@ -9,6 +9,21 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { FoodCategory, foodCategories, foodDatabase, searchFoods } from '@/data/foodData';
 
+// Helper function to get placeholder image for food categories
+const getFoodCategoryImage = (category: FoodCategory): string => {
+  const imageMap: Record<FoodCategory, string> = {
+    vegetables: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9",
+    lentils: "https://images.unsplash.com/photo-1493962853295-0fd70327578a",
+    meat: "https://images.unsplash.com/photo-1465379944081-7f47de8d74ac",
+    carbs: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1",
+    protein: "https://images.unsplash.com/photo-1465379944081-7f47de8d74ac",
+    beverages: "https://images.unsplash.com/photo-1493962853295-0fd70327578a",
+    sweets: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9"
+  };
+  
+  return imageMap[category];
+};
+
 const FoodLibrary = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState<FoodCategory | 'all'>('all');
@@ -25,6 +40,12 @@ const FoodLibrary = () => {
     : activeTab === 'all'
     ? foodDatabase
     : foodDatabase.filter(food => food.category === activeTab);
+
+  // Add images to foods
+  const foodsWithImages = filteredFoods.map(food => ({
+    ...food,
+    image: food.image || getFoodCategoryImage(food.category)
+  }));
   
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -87,10 +108,16 @@ const FoodLibrary = () => {
             </div>
           </div>
           
-          {/* Food category display */}
+          {/* Food category display with image */}
           {activeTab !== 'all' && (
-            <div className="glass-card p-4 mb-8 rounded-lg flex items-center">
-              <div className="text-3xl mr-3">{foodCategories[activeTab as FoodCategory].icon}</div>
+            <div className="glass-card p-4 mb-8 rounded-lg flex items-center overflow-hidden">
+              <div className="h-16 w-16 rounded-full overflow-hidden mr-4 border-2 border-primary/20">
+                <img 
+                  src={getFoodCategoryImage(activeTab)} 
+                  alt={foodCategories[activeTab].name}
+                  className="h-full w-full object-cover"
+                />
+              </div>
               <div>
                 <h2 className="font-semibold">{foodCategories[activeTab as FoodCategory].name}</h2>
                 <p className="text-sm text-muted-foreground">{foodCategories[activeTab as FoodCategory].description}</p>
@@ -101,7 +128,7 @@ const FoodLibrary = () => {
           {/* Display filtered foods */}
           {filteredFoods.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {filteredFoods.map(food => (
+              {foodsWithImages.map(food => (
                 <FoodCard 
                   key={food.id} 
                   food={food}
