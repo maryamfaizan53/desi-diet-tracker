@@ -37,7 +37,7 @@ const CalorieGraph = () => {
         <ChartContainer 
           config={{
             calories: { color: "#8B5CF6" },
-            target: { color: "#F97316", strokeDasharray: "5 5" }
+            target: { color: "#F97316" }
           }}
         >
           <ResponsiveContainer width="100%" height="100%">

@@ -6,7 +6,7 @@ import { useMeal } from '@/context/MealContext';
 
 const FeaturedFood = () => {
   const [featuredFood, setFeaturedFood] = useState<any>(null);
-  const { addFoodToMeal } = useMeal();
+  const { addToMeal } = useMeal();
   
   useEffect(() => {
     // Randomly select a food item for the featured food each day
@@ -21,7 +21,7 @@ const FeaturedFood = () => {
   if (!featuredFood) return null;
   
   const handleAddToMeal = () => {
-    addFoodToMeal(featuredFood, 'lunch', 1); // Default to lunch
+    addToMeal('lunch', featuredFood, 1); // Default to lunch
   };
   
   return (
