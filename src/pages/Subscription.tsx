@@ -29,10 +29,8 @@ const Subscription = () => {
   
   const handleSelectPlan = (plan: PlanDetails) => {
     if (!isAuthenticated) {
-      toast({
-        title: "Authentication required",
+      toast("Authentication required", {
         description: "Please login to subscribe to a plan.",
-        variant: "destructive",
       });
       navigate('/auth');
       return;
@@ -45,8 +43,7 @@ const Subscription = () => {
       // Basic plan is free, no payment needed
       processPayment({...cardDetails, number: '4111111111111111'}).then(success => {
         if (success) {
-          toast({
-            title: "Plan selected",
+          toast("Plan selected", {
             description: `You've selected the ${plan.name}.`,
           });
           navigate('/meal-planner');
@@ -66,8 +63,7 @@ const Subscription = () => {
     const success = await processPayment(cardDetails);
     
     if (success && selectedPlan) {
-      toast({
-        title: "Payment successful",
+      toast("Payment successful", {
         description: `You've successfully subscribed to the ${selectedPlan.name}.`,
       });
       navigate('/meal-planner');
@@ -76,8 +72,7 @@ const Subscription = () => {
 
   const handleCancelSubscription = () => {
     cancelSubscription();
-    toast({
-      title: "Subscription cancelled",
+    toast("Subscription cancelled", {
       description: "Your subscription has been cancelled successfully.",
     });
   };
