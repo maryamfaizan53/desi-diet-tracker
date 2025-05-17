@@ -16,7 +16,7 @@ const Footer = () => {
           </div>
           
           <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-            <span>Made with</span>
+            <span>Made by Maryam Faizan with</span>
             <Heart className="h-4 w-4 text-red-500 animate-pulse-glow" />
             <span>and healthy ingredients</span>
           </div>
