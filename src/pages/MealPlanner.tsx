@@ -4,6 +4,9 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import MealSection from '@/components/MealSection';
 import CalorieProgress from '@/components/CalorieProgress';
+import CalorieGraph from '@/components/CalorieGraph';
+import FeaturedFood from '@/components/FeaturedFood';
+import RecipeSuggestions from '@/components/RecipeSuggestions';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useMeal } from '@/context/MealContext';
@@ -88,6 +91,9 @@ const MealPlanner = () => {
             {/* Right column: Summary and profile */}
             <div className="w-full md:w-1/3 space-y-6">
               <CalorieProgress />
+              <FeaturedFood />
+              <CalorieGraph />
+              <RecipeSuggestions />
               
               {!isProfileComplete ? (
                 <div className="glass-card p-5 rounded-xl">
@@ -127,24 +133,6 @@ const MealPlanner = () => {
                   </div>
                 </div>
               )}
-              
-              <div className="glass-card p-5 rounded-xl">
-                <h3 className="text-lg font-semibold mb-2">Nutrition Tips</h3>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-start">
-                    <span className="mr-2">•</span>
-                    <span>Replace white rice with brown rice for more fiber</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2">•</span>
-                    <span>Add more vegetables to your curries for extra nutrients</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2">•</span>
-                    <span>Use yogurt instead of cream in recipes to reduce calories</span>
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>

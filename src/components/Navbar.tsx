@@ -1,83 +1,149 @@
 
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, Home, User, PieChart, Calendar } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { Menu, User } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useAuth } from '@/context/AuthContext';
 
 const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  const location = useLocation();
+  const { user, isAuthenticated, logout } = useAuth();
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
+  const isActive = (path: string) => location.pathname === path;
+  
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const handleLogout = () => {
+    logout();
+  };
+
+  const navLinks = [
+    { label: 'Home', path: '/' },
+    { label: 'Food Library', path: '/food-library' },
+    { label: 'Meal Planner', path: '/meal-planner' },
+    { label: 'Settings', path: '/settings' },
+  ];
+  
   return (
-    <nav className="glass-effect fixed top-0 w-full z-50 py-4">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'backdrop-blur-xl bg-black/40 shadow-lg' : ''}`}>
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <span className="text-gradient font-bold text-2xl">DesiDiet</span>
-          </div>
-
-          {/* Desktop menu */}
-          <div className="hidden md:flex space-x-8">
-            <NavLink to="/" icon={<Home className="w-4 h-4 mr-1" />} label="Home" />
-            <NavLink to="/food-library" icon={<Calendar className="w-4 h-4 mr-1" />} label="Food Library" />
-            <NavLink to="/meal-planner" icon={<PieChart className="w-4 h-4 mr-1" />} label="Meal Planner" />
-            <NavLink to="/profile" icon={<User className="w-4 h-4 mr-1" />} label="Profile" />
-          </div>
-
+        <div className="flex justify-between items-center py-4">
+          <Link to="/" className="text-2xl font-bold text-gradient">
+            DesiDiet
+          </Link>
+          
+          {/* Desktop navigation */}
+          <nav className="hidden md:flex items-center space-x-1">
+            {navLinks.map(link => (
+              <Button
+                key={link.path}
+                variant={isActive(link.path) ? "default" : "ghost"}
+                asChild
+              >
+                <Link to={link.path}>
+                  {link.label}
+                </Link>
+              </Button>
+            ))}
+            
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="icon">
+                    <User className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link to="/profile">Profile</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/subscription">Subscription</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button variant="default" asChild>
+                <Link to="/auth">Login</Link>
+              </Button>
+            )}
+          </nav>
+          
           {/* Mobile menu button */}
-          <div className="md:hidden">
-            <Button variant="ghost" size="icon" onClick={toggleMobileMenu} aria-label="Menu">
-              <Menu />
-            </Button>
-          </div>
+          <Button variant="ghost" size="icon" className="md:hidden" onClick={toggleMobileMenu}>
+            <Menu />
+          </Button>
         </div>
-
-        {/* Mobile menu */}
-        <div 
-          className={cn(
-            "md:hidden absolute left-0 right-0 p-4 mt-2 glass-effect transition-all duration-300 ease-in-out", 
-            isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
-          )}
-        >
-          <div className="flex flex-col space-y-4 py-2">
-            <MobileNavLink to="/" icon={<Home className="w-5 h-5 mr-2" />} label="Home" onClick={toggleMobileMenu} />
-            <MobileNavLink to="/food-library" icon={<Calendar className="w-5 h-5 mr-2" />} label="Food Library" onClick={toggleMobileMenu} />
-            <MobileNavLink to="/meal-planner" icon={<PieChart className="w-5 h-5 mr-2" />} label="Meal Planner" onClick={toggleMobileMenu} />
-            <MobileNavLink to="/profile" icon={<User className="w-5 h-5 mr-2" />} label="Profile" onClick={toggleMobileMenu} />
+        
+        {/* Mobile navigation */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden py-4 animate-fade-in">
+            <nav className="flex flex-col space-y-2">
+              {navLinks.map(link => (
+                <Button
+                  key={link.path}
+                  variant={isActive(link.path) ? "default" : "ghost"}
+                  className="justify-start"
+                  asChild
+                >
+                  <Link to={link.path}>
+                    {link.label}
+                  </Link>
+                </Button>
+              ))}
+              
+              {isAuthenticated ? (
+                <>
+                  <Button variant="ghost" className="justify-start" asChild>
+                    <Link to="/profile">My Profile</Link>
+                  </Button>
+                  <Button variant="ghost" className="justify-start" asChild>
+                    <Link to="/subscription">Subscription</Link>
+                  </Button>
+                  <Button variant="destructive" className="justify-start" onClick={handleLogout}>
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <Button variant="default" className="justify-start" asChild>
+                  <Link to="/auth">Login</Link>
+                </Button>
+              )}
+            </nav>
           </div>
-        </div>
+        )}
       </div>
-    </nav>
+    </header>
   );
 };
-
-interface NavLinkProps {
-  to: string;
-  icon: React.ReactNode;
-  label: string;
-  onClick?: () => void;
-}
-
-const NavLink = ({ to, icon, label }: NavLinkProps) => (
-  <Link to={to} className="flex items-center text-sm font-medium text-gray-200 hover:text-primary transition-colors">
-    {icon}
-    <span>{label}</span>
-  </Link>
-);
-
-const MobileNavLink = ({ to, icon, label, onClick }: NavLinkProps) => (
-  <Link 
-    to={to} 
-    onClick={onClick}
-    className="flex items-center w-full p-2 rounded-md hover:bg-primary/20 transition-colors text-gray-200"
-  >
-    {icon}
-    <span>{label}</span>
-  </Link>
-);
 
 export default Navbar;
