@@ -10,14 +10,23 @@ export interface PlanDetails {
   recommended?: boolean;
 }
 
+interface DummyCardDetails {
+  name: string;
+  number: string;
+  expiry: string;
+  cvc: string;
+}
+
 interface PaymentContextType {
   selectedPlan: PlanDetails | null;
   isProcessingPayment: boolean;
   paymentError: string | null;
   plans: PlanDetails[];
+  userSubscription: PlanDetails | null;
   selectPlan: (plan: PlanDetails) => void;
-  processPayment: (cardDetails: any) => Promise<boolean>;
+  processPayment: (cardDetails: DummyCardDetails) => Promise<boolean>;
   clearPaymentError: () => void;
+  cancelSubscription: () => void;
 }
 
 // Create context with default values
@@ -63,6 +72,7 @@ const subscriptionPlans: PlanDetails[] = [
 // Provider component
 export const PaymentProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [selectedPlan, setSelectedPlan] = useState<PlanDetails | null>(null);
+  const [userSubscription, setUserSubscription] = useState<PlanDetails | null>(null);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const [paymentError, setPaymentError] = useState<string | null>(null);
   
@@ -71,7 +81,7 @@ export const PaymentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setPaymentError(null);
   };
   
-  const processPayment = async (cardDetails: any): Promise<boolean> => {
+  const processPayment = async (cardDetails: DummyCardDetails): Promise<boolean> => {
     if (!selectedPlan) {
       setPaymentError('No plan selected');
       return false;
@@ -84,13 +94,24 @@ export const PaymentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       // Simulate payment processing API call
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      // For demo purposes, simulate success for valid cards
-      const isValidCard = cardDetails.number?.length === 16;
+      // For demo purposes, simulate success for valid cards (starts with '4' like Visa)
+      const isValidCard = cardDetails.number?.length === 16 && cardDetails.number.startsWith('4');
       
       if (!isValidCard) {
-        setPaymentError('Invalid card details');
+        setPaymentError('Invalid card details. Use a 16-digit number starting with 4.');
         return false;
       }
+      
+      // Set the subscription
+      setUserSubscription(selectedPlan);
+      
+      // Save subscription to localStorage for persistence
+      localStorage.setItem('desiDietSubscription', JSON.stringify({
+        planId: selectedPlan.id,
+        startDate: new Date().toISOString(),
+        // Set expiry to 30 days from now
+        expiryDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
+      }));
       
       return true;
     } catch (error) {
@@ -101,9 +122,37 @@ export const PaymentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     }
   };
   
+  const cancelSubscription = () => {
+    setUserSubscription(null);
+    localStorage.removeItem('desiDietSubscription');
+  };
+  
   const clearPaymentError = () => {
     setPaymentError(null);
   };
+  
+  // Load subscription from localStorage on component mount
+  React.useEffect(() => {
+    const savedSubscription = localStorage.getItem('desiDietSubscription');
+    if (savedSubscription) {
+      try {
+        const { planId, expiryDate } = JSON.parse(savedSubscription);
+        
+        // Check if subscription is expired
+        if (new Date(expiryDate) > new Date()) {
+          const plan = subscriptionPlans.find(p => p.id === planId);
+          if (plan) {
+            setUserSubscription(plan);
+          }
+        } else {
+          // Clear expired subscription
+          localStorage.removeItem('desiDietSubscription');
+        }
+      } catch (error) {
+        console.error('Error loading subscription from localStorage', error);
+      }
+    }
+  }, []);
   
   // Context value
   const value = {
@@ -111,9 +160,11 @@ export const PaymentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     isProcessingPayment,
     paymentError,
     plans: subscriptionPlans,
+    userSubscription,
     selectPlan,
     processPayment,
-    clearPaymentError
+    clearPaymentError,
+    cancelSubscription
   };
   
   return (

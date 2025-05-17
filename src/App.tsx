@@ -17,14 +17,22 @@ import Settings from "./pages/Settings";
 import Subscription from "./pages/Subscription";
 import NotFound from "./pages/NotFound";
 
-const queryClient = new QueryClient();
+// Create a client
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false, // default: true
+      retry: 1,
+    },
+  },
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
       <UserProvider>
-        <MealProvider>
-          <PaymentProvider>
+        <PaymentProvider>
+          <MealProvider>
             <TooltipProvider>
               <Toaster />
               <Sonner />
@@ -41,8 +49,8 @@ const App = () => (
                 </Routes>
               </BrowserRouter>
             </TooltipProvider>
-          </PaymentProvider>
-        </MealProvider>
+          </MealProvider>
+        </PaymentProvider>
       </UserProvider>
     </AuthProvider>
   </QueryClientProvider>

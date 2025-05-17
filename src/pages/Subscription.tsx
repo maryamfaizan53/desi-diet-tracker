@@ -6,14 +6,16 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Check, X } from 'lucide-react';
+import { Check, X, Star, Clock, CreditCard, Calendar, Shield } from 'lucide-react';
 import { usePayment, PlanDetails } from '@/context/PaymentContext';
-import { toast } from '@/hooks/use-toast';
+import { toast } from '@/components/ui/sonner';
 import { useAuth } from '@/context/AuthContext';
+import { Badge } from '@/components/ui/badge';
 
 const Subscription = () => {
   const navigate = useNavigate();
-  const { plans, selectPlan, selectedPlan, processPayment, isProcessingPayment, paymentError } = usePayment();
+  const { plans, selectPlan, selectedPlan, processPayment, 
+          isProcessingPayment, paymentError, userSubscription, cancelSubscription } = usePayment();
   const { user, isAuthenticated } = useAuth();
   const [showPaymentForm, setShowPaymentForm] = useState(false);
   
@@ -41,11 +43,15 @@ const Subscription = () => {
     
     if (plan.price === 0) {
       // Basic plan is free, no payment needed
-      toast({
-        title: "Plan selected",
-        description: `You've selected the ${plan.name}.`,
+      processPayment({...cardDetails, number: '4111111111111111'}).then(success => {
+        if (success) {
+          toast({
+            title: "Plan selected",
+            description: `You've selected the ${plan.name}.`,
+          });
+          navigate('/meal-planner');
+        }
       });
-      navigate('/meal-planner');
     }
   };
   
@@ -67,6 +73,14 @@ const Subscription = () => {
       navigate('/meal-planner');
     }
   };
+
+  const handleCancelSubscription = () => {
+    cancelSubscription();
+    toast({
+      title: "Subscription cancelled",
+      description: "Your subscription has been cancelled successfully.",
+    });
+  };
   
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -80,6 +94,35 @@ const Subscription = () => {
               Choose the plan that best fits your health and nutrition goals.
             </p>
           </div>
+
+          {userSubscription && !showPaymentForm && (
+            <div className="max-w-md mx-auto glass-effect p-6 rounded-xl mb-8">
+              <div className="flex justify-between items-start">
+                <div>
+                  <div className="flex items-center mb-2">
+                    <h2 className="text-2xl font-semibold">Current Subscription</h2>
+                    <Badge className="ml-2 bg-green-500">Active</Badge>
+                  </div>
+                  <p className="text-lg font-medium">{userSubscription.name}</p>
+                  <p className="text-muted-foreground">${userSubscription.price}/month</p>
+                  
+                  <div className="mt-4 space-y-2">
+                    {userSubscription.features.map((feature, index) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <Check className="h-5 w-5 text-green-500" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="mt-6">
+                <Button onClick={handleCancelSubscription} variant="destructive" className="w-full">
+                  Cancel Subscription
+                </Button>
+              </div>
+            </div>
+          )}
           
           {!showPaymentForm ? (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -88,15 +131,24 @@ const Subscription = () => {
                   key={plan.id}
                   className={`glass-card p-6 rounded-xl relative hover:scale-105 transition-transform ${
                     plan.recommended ? 'border-2 border-green-500' : ''
-                  }`}
+                  } ${userSubscription?.id === plan.id ? 'border-2 border-blue-500' : ''}`}
                 >
                   {plan.recommended && (
-                    <div className="absolute -top-3 -right-3 bg-green-500 text-white px-4 py-1 rotate-12 shadow-lg text-sm font-medium">
+                    <div className="absolute -top-3 -right-3 bg-green-500 text-white px-4 py-1 rotate-12 shadow-lg text-sm font-medium z-10">
                       Recommended
                     </div>
                   )}
+                  {userSubscription?.id === plan.id && (
+                    <div className="absolute -top-3 -left-3 bg-blue-500 text-white px-4 py-1 -rotate-12 shadow-lg text-sm font-medium z-10">
+                      Current Plan
+                    </div>
+                  )}
                   
-                  <h2 className="text-xl font-semibold mb-2">{plan.name}</h2>
+                  <div className="flex justify-between items-center mb-4">
+                    <h2 className="text-xl font-semibold">{plan.name}</h2>
+                    {plan.id === 'premium' && <Star className="h-5 w-5 text-yellow-400" />}
+                    {plan.id === 'pro' && <Shield className="h-5 w-5 text-purple-500" />}
+                  </div>
                   
                   <div className="mb-4">
                     <span className="text-3xl font-bold">${plan.price}</span>
@@ -116,8 +168,9 @@ const Subscription = () => {
                     className="w-full" 
                     variant={plan.recommended ? "default" : "outline"}
                     onClick={() => handleSelectPlan(plan)}
+                    disabled={userSubscription?.id === plan.id}
                   >
-                    {plan.price > 0 ? 'Subscribe Now' : 'Get Started'}
+                    {userSubscription?.id === plan.id ? 'Current Plan' : (plan.price > 0 ? 'Subscribe Now' : 'Get Started')}
                   </Button>
                 </div>
               ))}
@@ -159,27 +212,34 @@ const Subscription = () => {
                 
                 <div className="space-y-2">
                   <Label htmlFor="number">Card Number</Label>
-                  <Input
-                    id="number"
-                    name="number"
-                    placeholder="1234 5678 9012 3456"
-                    value={cardDetails.number}
-                    onChange={handleInputChange}
-                    required
-                  />
+                  <div className="relative">
+                    <Input
+                      id="number"
+                      name="number"
+                      placeholder="4111 1111 1111 1111"
+                      value={cardDetails.number}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    <CreditCard className="absolute right-3 top-2.5 h-5 w-5 text-muted-foreground" />
+                  </div>
+                  <p className="text-xs text-muted-foreground">For testing, use a 16-digit number that starts with 4</p>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="expiry">Expiry Date</Label>
-                    <Input
-                      id="expiry"
-                      name="expiry"
-                      placeholder="MM/YY"
-                      value={cardDetails.expiry}
-                      onChange={handleInputChange}
-                      required
-                    />
+                    <div className="relative">
+                      <Input
+                        id="expiry"
+                        name="expiry"
+                        placeholder="MM/YY"
+                        value={cardDetails.expiry}
+                        onChange={handleInputChange}
+                        required
+                      />
+                      <Calendar className="absolute right-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                    </div>
                   </div>
                   
                   <div className="space-y-2">
@@ -212,12 +272,100 @@ const Subscription = () => {
                   </Button>
                 </div>
                 
-                <p className="text-center text-xs text-muted-foreground">
-                  Your payment information is secure and encrypted.
-                </p>
+                <div className="pt-2 flex items-center justify-center gap-2 text-center text-xs text-muted-foreground">
+                  <Shield className="h-4 w-4" />
+                  <p>Your payment information is secure and encrypted.</p>
+                </div>
               </form>
             </div>
           )}
+
+          <div className="max-w-2xl mx-auto mt-16 p-6 border border-border rounded-lg">
+            <h2 className="text-xl font-semibold mb-4">Sample Python Object-Oriented Principles</h2>
+            <p className="mb-3 text-muted-foreground">
+              Below is a representation of how this application would implement subscription plans using Python OOP.
+              (This is just for demonstration as Python can't be directly used in this React app)
+            </p>
+            <div className="bg-muted p-4 rounded-md overflow-auto text-left">
+              <pre className="text-xs">
+{`# Python OOP Principles (Representational Only)
+
+class Plan:
+    def __init__(self, id, name, price, features):
+        self.id = id
+        self.name = name
+        self.price = price
+        self.features = features
+        
+    def is_free(self):
+        return self.price == 0
+        
+    def __str__(self):
+        return f"{self.name} (${self.price}/month)"
+
+
+class Subscription:
+    def __init__(self, user, plan, start_date):
+        self.user = user
+        self.plan = plan
+        self.start_date = start_date
+        self.active = True
+        
+    def cancel(self):
+        self.active = False
+        
+    def is_active(self):
+        return self.active
+        
+    def days_remaining(self):
+        # Calculate days remaining in subscription
+        pass
+
+
+class PaymentProcessor:
+    @staticmethod
+    def process_payment(card_details, amount):
+        # Validate card
+        if card_details.number.startswith('4') and len(card_details.number) == 16:
+            return True
+        return False
+
+
+class User:
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+        self.subscription = None
+        
+    def subscribe(self, plan, payment_details):
+        payment_successful = PaymentProcessor.process_payment(payment_details, plan.price)
+        if payment_successful:
+            self.subscription = Subscription(self, plan, datetime.now())
+            return True
+        return False
+        
+    def has_access_to_feature(self, feature_name):
+        if not self.subscription or not self.subscription.is_active():
+            return False
+        return feature_name in self.subscription.plan.features
+
+
+# Usage example
+basic_plan = Plan("basic", "Basic Plan", 0, ["Track daily meals", "Basic food library"])
+premium_plan = Plan("premium", "Premium Plan", 9.99, ["Unlimited meals", "Recipe suggestions"])
+
+user = User("John Doe", "john@example.com")
+card = CardDetails("John Doe", "4111111111111111", "12/25", "123")
+
+if user.subscribe(premium_plan, card):
+    print("Subscription successful!")
+    
+if user.has_access_to_feature("Recipe suggestions"):
+    print("User can access recipe suggestions")
+`}
+              </pre>
+            </div>
+          </div>
         </div>
       </main>
       
