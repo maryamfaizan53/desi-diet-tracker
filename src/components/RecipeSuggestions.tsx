@@ -12,7 +12,7 @@ const recipes = [
     time: '30 min',
     difficulty: 'Medium',
     goal: 'lose',
-    image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641'
+    image: 'https://media.istockphoto.com/id/1411524598/photo/chicken-tikka-masala-cooked-marinated-chicken-in-spiced-curry-sauce.webp?a=1&b=1&s=612x612&w=0&k=20&c=WCeZ5aDtHNeYnNdiZNnZJESzEgMNIPBtkHvSPg7z93s='
   },
   {
     id: 'recipe-2',
@@ -21,7 +21,7 @@ const recipes = [
     time: '45 min',
     difficulty: 'Easy',
     goal: 'maintain',
-    image: 'https://images.unsplash.com/photo-1585937421612-70a008356c36'
+    image: 'https://media.istockphoto.com/id/2184634264/photo/image-of-spicy-chana-bhaji-masala-on-restaurant-plate-flavorful-indian-chickpea-curry.webp?a=1&b=1&s=612x612&w=0&k=20&c=xzrLAzww1LaXHewZwaRGrVz2QoNSBPiZwlUT1g_Zr7E='
   },
   {
     id: 'recipe-3',
@@ -30,7 +30,7 @@ const recipes = [
     time: '50 min',
     difficulty: 'Hard',
     goal: 'gain',
-    image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398'
+    image: 'https://media.istockphoto.com/id/1411524598/photo/chicken-tikka-masala-cooked-marinated-chicken-in-spiced-curry-sauce.webp?a=1&b=1&s=612x612&w=0&k=20&c=WCeZ5aDtHNeYnNdiZNnZJESzEgMNIPBtkHvSPg7z93s='
   }
 ];
 

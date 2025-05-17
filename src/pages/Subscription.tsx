@@ -275,7 +275,7 @@ const Subscription = () => {
             </div>
           )}
 
-          <div className="max-w-2xl mx-auto mt-16 p-6 border border-border rounded-lg">
+          {/* <div className="max-w-2xl mx-auto mt-16 p-6 border border-border rounded-lg">
             <h2 className="text-xl font-semibold mb-4">Sample Python Object-Oriented Principles</h2>
             <p className="mb-3 text-muted-foreground">
               Below is a representation of how this application would implement subscription plans using Python OOP.
@@ -360,7 +360,7 @@ if user.has_access_to_feature("Recipe suggestions"):
 `}
               </pre>
             </div>
-          </div>
+          </div> */}
         </div>
       </main>
       

@@ -12,13 +12,13 @@ import { FoodCategory, foodCategories, foodDatabase, searchFoods } from '@/data/
 // Helper function to get placeholder image for food categories
 const getFoodCategoryImage = (category: FoodCategory): string => {
   const imageMap: Record<FoodCategory, string> = {
-    vegetables: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9",
-    lentils: "https://images.unsplash.com/photo-1493962853295-0fd70327578a",
-    meat: "https://images.unsplash.com/photo-1465379944081-7f47de8d74ac",
-    carbs: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1",
-    protein: "https://images.unsplash.com/photo-1465379944081-7f47de8d74ac",
-    beverages: "https://images.unsplash.com/photo-1493962853295-0fd70327578a",
-    sweets: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9"
+    vegetables: "https://media.istockphoto.com/id/1483238954/photo/wooden-crate-filled-with-fresh-organic-vegetables.webp?a=1&b=1&s=612x612&w=0&k=20&c=L6j8s-0SBwXIW6iBaX2_svpRp_KlleHT1eJFF87CaPE=",
+    lentils: "https://images.unsplash.com/photo-1599579085809-4edbc35cee01?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bGVudGlsc3xlbnwwfHwwfHx8MA%3D%3D",
+    meat: "https://images.unsplash.com/photo-1723893905879-0e309c2a8e06?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fG1lYXR8ZW58MHx8MHx8fDA%3D",
+    carbs: "https://media.istockphoto.com/id/1067113342/photo/healthy-products-sources-of-carbohydrates.webp?a=1&b=1&s=612x612&w=0&k=20&c=5_U5-rB1WNpYWmK47xJc40cxsnzSIhA2DH9Na91ejsw=",
+    protein: "https://media.istockphoto.com/id/1457411409/photo/food-rich-in-healthy-proteins.webp?a=1&b=1&s=612x612&w=0&k=20&c=J9kJtE_Ym8rczbLz3P54suAVOYnTOxJbqypW2jvDNuU=",
+    beverages: "https://images.unsplash.com/photo-1631308492942-3a713d7fd02e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGJldmVyYWdlc3xlbnwwfHwwfHx8MA%3D%3D",
+    sweets: "https://media.istockphoto.com/id/1054228718/photo/indian-sweets-in-a-plate-includes-gulab-jamun-rasgulla-kaju-katli-morichoor-bundi-laddu.webp?a=1&b=1&s=612x612&w=0&k=20&c=i_eG_hiRCHa1evPiSHYauXWHVSQ5LZ893QrdAlKB_vE="
   };
   
   return imageMap[category];
@@ -155,7 +155,7 @@ const FoodLibrary = () => {
   );
 };
 
-const Link = ({ to, children, ...props }: { to: string; children: React.ReactNode; [key: string]: any }) => (
+const Link = ({ to, children, ...props }: { to: string; children: React.ReactNode; [key: string]:React.ReactNode}) => (
   <a href={to} {...props}>{children}</a>
 );
 
