@@ -46,6 +46,7 @@ const Navbar = () => {
     { label: 'Home', path: '/' },
     { label: 'Food Library', path: '/food-library' },
     { label: 'Meal Planner', path: '/meal-planner' },
+    { label: 'Fitness Hub', path: '/fitness' },
     { label: 'Settings', path: '/settings' },
   ];
   

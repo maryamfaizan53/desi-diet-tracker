@@ -13,6 +13,7 @@ import Auth from "./pages/Auth";
 import FoodLibrary from "./pages/FoodLibrary";
 import MealPlanner from "./pages/MealPlanner";
 import Profile from "./pages/Profile";
+import Fitness from "./pages/Fitness";
 import Settings from "./pages/Settings";
 import Subscription from "./pages/Subscription";
 import NotFound from "./pages/NotFound";
@@ -43,6 +44,7 @@ const App = () => (
                   <Route path="/food-library" element={<FoodLibrary />} />
                   <Route path="/meal-planner" element={<MealPlanner />} />
                   <Route path="/profile" element={<Profile />} />
+                  <Route path="/fitness" element={<Fitness />} />
                   <Route path="/settings" element={<Settings />} />
                   <Route path="/subscription" element={<Subscription />} />
                   <Route path="*" element={<NotFound />} />
