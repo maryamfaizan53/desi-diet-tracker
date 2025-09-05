@@ -18,39 +18,40 @@ const Index = () => {
         <section className="py-20">
           <div className="container px-4 mx-auto">
             <div className="text-center mb-12 animate-fade-in">
-              <h2 className="text-3xl font-bold mb-4">Plan Your Meals, <span className="text-gradient">Desi Style</span></h2>
+              <h2 className="text-3xl font-bold mb-4">AI-Powered <span className="text-gradient">Health Intelligence</span></h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Accurate calorie tracking with all your favorite South Asian dishes.
+                Advanced artificial intelligence analyzes your health data to provide personalized recommendations, 
+                custom workout plans, and nutrition guidance tailored to your unique needs.
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <FeatureCard 
-                title="AI Fitness Coach" 
-                description="Personalized workout plans and BMI analysis powered by AI."
-                imageSrc="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=60"
-                imageAlt="AI fitness coaching"
+                title="AI Health Analysis" 
+                description="Advanced BMI analysis with personalized health insights and risk assessment."
+                imageSrc="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&auto=format&fit=crop&q=60"
+                imageAlt="AI health analysis dashboard"
                 linkTo="/fitness"
               />
               <FeatureCard 
-                title="South Asian Foods" 
-                description="Comprehensive database of desi foods with accurate nutrition data."
-                imageSrc="https://images.unsplash.com/photo-1695205962564-43ba2b18b075?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHNvdXRoJTIwYXNpYW4lMjBmb29kfGVufDB8fDB8fHww"
-                imageAlt="South Asian food variety"
+                title="Smart Nutrition AI" 
+                description="Intelligent meal planning with South Asian cuisine and macro tracking."
+                imageSrc="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&auto=format&fit=crop&q=60"
+                imageAlt="AI nutrition planning"
                 linkTo="/food-library"
               />
               <FeatureCard 
-                title="Healthy Recipes" 
-                description="AI-curated recipes for weight loss, gain, and balanced nutrition."
-                imageSrc="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&auto=format&fit=crop&q=60"
-                imageAlt="Healthy recipe suggestions"
+                title="Personalized Workouts" 
+                description="AI-generated exercise routines adapted to your fitness level and goals."
+                imageSrc="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&auto=format&fit=crop&q=60"
+                imageAlt="AI workout generation"
                 linkTo="/fitness"
               />
               <FeatureCard 
-                title="Progress Tracking" 
-                description="Monitor calories, workouts, and achievements in real-time."
-                imageSrc="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&auto=format&fit=crop&q=60"
-                imageAlt="Fitness progress tracking"
+                title="Intelligent Tracking" 
+                description="Real-time progress monitoring with predictive analytics and insights."
+                imageSrc="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&auto=format&fit=crop&q=60"
+                imageAlt="AI progress tracking"
                 linkTo="/fitness"
               />
             </div>

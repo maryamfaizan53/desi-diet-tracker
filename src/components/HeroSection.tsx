@@ -24,12 +24,12 @@ const HeroSection = () => {
       <div className="container px-4 mx-auto">
         <div className="flex flex-col items-center justify-center text-center py-20 animate-fade-in">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-            Track Calories, <span className="text-gradient">Desi Style!</span>
+            Your AI-Powered <span className="text-gradient">Health Coach</span>
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-8">
-            Plan and track your meals with South Asian foods like Roti, Daal, Paratha, and more.
-            Achieve your health goals without giving up the flavors you love.
+            Experience personalized fitness coaching, BMI analysis, and nutrition guidance powered by advanced AI.
+            Get custom workout plans, healthy recipes, and real-time health insights tailored to your unique goals.
           </p>
           
           {/* Food Image Carousel */}
@@ -84,23 +84,23 @@ const HeroSection = () => {
 
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-4xl">
             <FeatureCard 
-              title="100+ Desi Foods" 
-              description="Comprehensive library of South Asian cuisine"
+              title="AI Health Analysis" 
+              description="Get personalized BMI insights and health recommendations"
               iconClass="animate-float"
             />
             <FeatureCard 
-              title="Meal Planning" 
-              description="Create balanced meals that match your goals"
+              title="Smart Workouts" 
+              description="AI-generated workout plans based on your fitness level"
               iconClass="animate-pulse-glow"
             />
             <FeatureCard 
-              title="Track Progress" 
-              description="Monitor your calorie intake and achievements"
+              title="Nutrition AI" 
+              description="Intelligent meal planning with South Asian cuisine"
               iconClass="animate-float"
             />
             <FeatureCard 
-              title="Custom Goals" 
-              description="Personalized plans for your health journey"
+              title="Progress Tracking" 
+              description="Real-time analytics and goal achievement monitoring"
               iconClass="animate-pulse-glow"
             />
           </div>

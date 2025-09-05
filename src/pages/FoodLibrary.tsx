@@ -54,9 +54,9 @@ const FoodLibrary = () => {
       <main className="flex-grow pt-24 pb-12">
         <div className="container px-4 mx-auto">
           <div className="glass-effect p-6 rounded-xl mb-8">
-            <h1 className="text-2xl font-bold mb-2">Food Library</h1>
+            <h1 className="text-3xl font-bold mb-4">AI Food Library</h1>
             <p className="text-muted-foreground mb-6">
-              Browse our collection of South Asian foods or search for your favorites.
+              Discover South Asian foods with AI-powered nutrition insights and personalized recommendations.
             </p>
             
             {/* Search form */}

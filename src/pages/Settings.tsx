@@ -48,9 +48,43 @@ const Settings = () => {
       <main className="flex-grow pt-24 pb-12">
         <div className="container px-4 mx-auto max-w-3xl">
           <div className="glass-effect p-8 rounded-xl">
-            <h1 className="text-2xl font-bold mb-6">Settings</h1>
+            <h1 className="text-3xl font-bold mb-6">AI Settings & Preferences</h1>
             
             <div className="space-y-8">
+              {/* AI Features */}
+              <div className="glass-card p-5 rounded-lg">
+                <h2 className="text-xl font-semibold mb-4">AI Features</h2>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span>AI Health Recommendations</span>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span>Smart Workout Generation</span>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span>Personalized Nutrition Insights</span>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span>Real-time Progress Analytics</span>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+                </div>
+              </div>
               {/* Theme Settings */}
               <div className="glass-card p-5 rounded-lg">
                 <h2 className="text-xl font-semibold mb-4">Appearance</h2>
