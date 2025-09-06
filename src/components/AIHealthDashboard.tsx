@@ -6,12 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Brain, Activity, Target, TrendingUp, Heart, AlertCircle } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useUser } from '@/context/UserContext';
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL || '',
-  import.meta.env.VITE_SUPABASE_ANON_KEY || ''
-);
+import { supabase } from '@/integrations/supabase/client';
 
 interface AIRecommendations {
   bmi: number;
