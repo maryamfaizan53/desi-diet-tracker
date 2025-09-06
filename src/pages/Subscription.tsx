@@ -41,7 +41,7 @@ const Subscription = () => {
     
     if (plan.price === 0) {
       // Basic plan is free, no payment needed
-      processPayment({...cardDetails, number: '4111111111111111'}).then(success => {
+      processPayment().then(success => {
         if (success) {
           toast("Plan selected", {
             description: `You've selected the ${plan.name}.`,
@@ -60,21 +60,33 @@ const Subscription = () => {
   const handleSubmitPayment = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const success = await processPayment(cardDetails);
-    
-    if (success && selectedPlan) {
-      toast("Payment successful", {
-        description: `You've successfully subscribed to the ${selectedPlan.name}.`,
+    try {
+      const success = await processPayment();
+      if (success) {
+        toast("Payment Initiated", {
+          description: "You've been redirected to Stripe. Complete the payment to activate your subscription.",
+        });
+        setShowPaymentForm(false);
+      }
+    } catch (error) {
+      console.error('Payment error:', error);
+      toast("Payment Error", {
+        description: "There was an error processing your payment. Please try again.",
       });
-      navigate('/meal-planner');
     }
   };
 
-  const handleCancelSubscription = () => {
-    cancelSubscription();
-    toast("Subscription cancelled", {
-      description: "Your subscription has been cancelled successfully.",
-    });
+  const handleCancelSubscription = async () => {
+    try {
+      await cancelSubscription();
+      toast("Redirected to Customer Portal", {
+        description: "You can manage your subscription in the Stripe Customer Portal.",
+      });
+    } catch (error) {
+      toast("Error", {
+        description: "There was an error opening the customer portal.",
+      });
+    }
   };
   
   return (
@@ -218,7 +230,7 @@ const Subscription = () => {
                     />
                     <CreditCard className="absolute right-3 top-2.5 h-5 w-5 text-muted-foreground" />
                   </div>
-                  <p className="text-xs text-muted-foreground">For testing, use a 16-digit number that starts with 4</p>
+                  <p className="text-xs text-muted-foreground">This will redirect you to Stripe Checkout to complete payment securely</p>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
@@ -263,7 +275,7 @@ const Subscription = () => {
                     className="w-full" 
                     disabled={isProcessingPayment}
                   >
-                    {isProcessingPayment ? 'Processing...' : `Pay $${selectedPlan?.price}`}
+                    {isProcessingPayment ? 'Processing...' : `Subscribe to ${selectedPlan?.name}`}
                   </Button>
                 </div>
                 

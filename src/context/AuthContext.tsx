@@ -1,8 +1,8 @@
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { User, Session } from '@supabase/supabase-js';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
-
-// Define user types
-export interface AuthUser {
+interface AuthUser {
   id: string;
   email: string;
   name: string;
@@ -11,113 +11,124 @@ export interface AuthUser {
 
 interface AuthContextType {
   user: AuthUser | null;
+  session: Session | null;
   isAuthenticated: boolean;
   isLoading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string, name: string) => Promise<void>;
-  logout: () => void;
+  login: (email: string, password: string) => Promise<{ error?: string }>;
+  register: (email: string, password: string, name: string) => Promise<{ error?: string }>;
+  logout: () => Promise<void>;
 }
 
-// Create context with default values
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Sample user for demonstration
-const sampleUser: AuthUser = {
-  id: '123456',
-  email: 'demo@example.com',
-  name: 'Demo User',
-  isSubscribed: false,
-};
-
-// Provider component
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<AuthUser | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  
-  // Check if user is logged in on initial load
+
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        // Simulate checking authentication status
-        const storedUser = localStorage.getItem('desiDietUser');
-        if (storedUser) {
-          setUser(JSON.parse(storedUser));
+    // Set up auth state listener FIRST
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        console.log('Auth state changed:', event, session?.user?.email);
+        setSession(session);
+        
+        if (session?.user) {
+          // Fetch profile data
+          const { data: profile } = await supabase
+            .from('profiles')
+            .select('full_name')
+            .eq('user_id', session.user.id)
+            .single();
+
+          // Check subscription status after a short delay
+          setTimeout(async () => {
+            try {
+              await supabase.functions.invoke('check-subscription');
+            } catch (error) {
+              console.error('Error checking subscription:', error);
+            }
+          }, 0);
+
+          setUser({
+            id: session.user.id,
+            email: session.user.email || '',
+            name: profile?.full_name || session.user.email?.split('@')[0] || '',
+            isSubscribed: false // Will be updated by subscription check
+          });
+        } else {
+          setUser(null);
         }
-      } catch (error) {
-        console.error("Authentication error:", error);
-      } finally {
         setIsLoading(false);
       }
-    };
-    
-    checkAuth();
+    );
+
+    // THEN check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        setSession(session);
+      } else {
+        setIsLoading(false);
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
-  
-  // Login function
-  const login = async (email: string, password: string) => {
-    setIsLoading(true);
-    
+
+  const login = async (email: string, password: string): Promise<{ error?: string }> => {
     try {
-      // Simulate API call with timeout
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
       
-      // Simple validation for demo
-      if (email && password) {
-        setUser(sampleUser);
-        localStorage.setItem('desiDietUser', JSON.stringify(sampleUser));
-      } else {
-        throw new Error('Invalid credentials');
+      if (error) {
+        return { error: error.message };
       }
+      return {};
     } catch (error) {
-      console.error("Login error:", error);
-      throw error;
-    } finally {
-      setIsLoading(false);
+      return { error: 'An unexpected error occurred' };
     }
   };
-  
-  // Register function
-  const register = async (email: string, password: string, name: string) => {
-    setIsLoading(true);
-    
+
+  const register = async (email: string, password: string, name: string): Promise<{ error?: string }> => {
     try {
-      // Simulate API call with timeout
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const redirectUrl = `${window.location.origin}/`;
       
-      // Simple validation for demo
-      if (email && password && name) {
-        const newUser = { ...sampleUser, email, name };
-        setUser(newUser);
-        localStorage.setItem('desiDietUser', JSON.stringify(newUser));
-      } else {
-        throw new Error('Invalid registration data');
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: redirectUrl,
+          data: {
+            full_name: name,
+          }
+        }
+      });
+      
+      if (error) {
+        return { error: error.message };
       }
+      return {};
     } catch (error) {
-      console.error("Registration error:", error);
-      throw error;
-    } finally {
-      setIsLoading(false);
+      return { error: 'An unexpected error occurred' };
     }
   };
-  
-  // Logout function
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('desiDietUser');
+
+  const logout = async (): Promise<void> => {
+    await supabase.auth.signOut();
   };
-  
-  // Context value
-  const value = {
-    user,
-    isAuthenticated: !!user,
-    isLoading,
-    login,
-    register,
-    logout
-  };
-  
+
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider value={{
+      user,
+      session,
+      isAuthenticated: !!user,
+      isLoading,
+      login,
+      register,
+      logout
+    }}>
       {children}
     </AuthContext.Provider>
   );
