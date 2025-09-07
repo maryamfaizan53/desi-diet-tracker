@@ -40,26 +40,24 @@ const HeroSection = () => {
                   <div className="p-1">
                     <div className="overflow-hidden rounded-xl">
                       <img 
-                        // src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9" 
-                        src ="https://images.unsplash.com/photo-1716816211590-c15a328a5ff0?q=80&w=2023&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                       
-                        alt="Delicious South Asian Food" 
+                        src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="AI-Powered Fitness Coaching" 
                         className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500"
                       />
                     </div>
-                    <p className="text-sm text-center mt-2 text-muted-foreground">Authentic Spices</p>
+                    <p className="text-sm text-center mt-2 text-muted-foreground">AI Fitness Coaching</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem className="md:basis-1/2">
                   <div className="p-1">
                     <div className="overflow-hidden rounded-xl">
                       <img 
-                        src="https://images.unsplash.com/photo-1741026079032-7cb660e44bad?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHRyYWRpdGlvbmFsJTIwZGVzaSUyMGZvb2R8ZW58MHx8MHx8fDA%3D" 
-                        alt="Traditional Dishes" 
+                        src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Health Analytics and BMI Tracking" 
                         className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500"
                       />
                     </div>
-                    <p className="text-sm text-center mt-2 text-muted-foreground">Traditional Recipes</p>
+                    <p className="text-sm text-center mt-2 text-muted-foreground">Health Analytics</p>
                   </div>
                 </CarouselItem>
               </CarouselContent>
