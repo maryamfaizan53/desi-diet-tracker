@@ -32,37 +32,65 @@ const HeroSection = () => {
             Get custom workout plans, healthy recipes, and real-time health insights tailored to your unique goals.
           </p>
           
-          {/* Food Image Carousel */}
-          <div className="w-full max-w-3xl mx-auto mb-10">
-            <Carousel className="w-full">
-              <CarouselContent>
-                <CarouselItem className="md:basis-1/2">
+          {/* Enhanced Health & Fitness Carousel */}
+          <div className="w-full max-w-4xl mx-auto mb-10">
+            <Carousel className="w-full" opts={{ align: "start", loop: true }}>
+              <CarouselContent className="-ml-2 md:-ml-4">
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
                   <div className="p-1">
-                    <div className="overflow-hidden rounded-xl">
+                    <div className="overflow-hidden rounded-xl shadow-2xl transform hover:scale-110 hover:rotate-1 transition-all duration-500 hover:shadow-primary/20">
                       <img 
                         src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         alt="AI-Powered Fitness Coaching" 
-                        className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500"
+                        className="w-full h-64 object-cover"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
                     </div>
-                    <p className="text-sm text-center mt-2 text-muted-foreground">AI Fitness Coaching</p>
+                    <p className="text-sm text-center mt-3 text-muted-foreground font-medium">AI Fitness Coaching</p>
                   </div>
                 </CarouselItem>
-                <CarouselItem className="md:basis-1/2">
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
                   <div className="p-1">
-                    <div className="overflow-hidden rounded-xl">
+                    <div className="overflow-hidden rounded-xl shadow-2xl transform hover:scale-110 hover:-rotate-1 transition-all duration-500 hover:shadow-accent/20">
                       <img 
                         src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         alt="Health Analytics and BMI Tracking" 
-                        className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500"
+                        className="w-full h-64 object-cover"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
                     </div>
-                    <p className="text-sm text-center mt-2 text-muted-foreground">Health Analytics</p>
+                    <p className="text-sm text-center mt-3 text-muted-foreground font-medium">Health Analytics</p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div className="p-1">
+                    <div className="overflow-hidden rounded-xl shadow-2xl transform hover:scale-110 hover:rotate-1 transition-all duration-500 hover:shadow-primary/20">
+                      <img 
+                        src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2053&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Personalized Nutrition Planning" 
+                        className="w-full h-64 object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                    <p className="text-sm text-center mt-3 text-muted-foreground font-medium">Smart Nutrition</p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div className="p-1">
+                    <div className="overflow-hidden rounded-xl shadow-2xl transform hover:scale-110 hover:-rotate-1 transition-all duration-500 hover:shadow-accent/20">
+                      <img 
+                        src="https://images.unsplash.com/photo-1434596922112-19c563067271?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Custom Workout Plans" 
+                        className="w-full h-64 object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                    <p className="text-sm text-center mt-3 text-muted-foreground font-medium">Custom Workouts</p>
                   </div>
                 </CarouselItem>
               </CarouselContent>
-              <CarouselPrevious className="left-0" />
-              <CarouselNext className="right-0" />
+              <CarouselPrevious className="left-2 bg-background/80 backdrop-blur-sm border-white/20 hover:bg-primary/20" />
+              <CarouselNext className="right-2 bg-background/80 backdrop-blur-sm border-white/20 hover:bg-primary/20" />
             </Carousel>
           </div>
           
