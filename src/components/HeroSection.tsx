@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -32,66 +31,9 @@ const HeroSection = () => {
             Get custom workout plans, healthy recipes, and real-time health insights tailored to your unique goals.
           </p>
           
-          {/* Enhanced Health & Fitness Carousel */}
-          <div className="w-full max-w-4xl mx-auto mb-10">
-            <Carousel className="w-full" opts={{ align: "start", loop: true }}>
-              <CarouselContent className="-ml-2 md:-ml-4">
-                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1">
-                    <div className="overflow-hidden rounded-xl shadow-2xl transform hover:scale-110 hover:rotate-1 transition-all duration-500 hover:shadow-primary/20">
-                      <img 
-                        src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="AI-Powered Fitness Coaching" 
-                        className="w-full h-64 object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                    </div>
-                    <p className="text-sm text-center mt-3 text-muted-foreground font-medium">AI Fitness Coaching</p>
-                  </div>
-                </CarouselItem>
-                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1">
-                    <div className="overflow-hidden rounded-xl shadow-2xl transform hover:scale-110 hover:-rotate-1 transition-all duration-500 hover:shadow-accent/20">
-                      <img 
-                        src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="Health Analytics and BMI Tracking" 
-                        className="w-full h-64 object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                    </div>
-                    <p className="text-sm text-center mt-3 text-muted-foreground font-medium">Health Analytics</p>
-                  </div>
-                </CarouselItem>
-                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1">
-                    <div className="overflow-hidden rounded-xl shadow-2xl transform hover:scale-110 hover:rotate-1 transition-all duration-500 hover:shadow-primary/20">
-                      <img 
-                        src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2053&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="Personalized Nutrition Planning" 
-                        className="w-full h-64 object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                    </div>
-                    <p className="text-sm text-center mt-3 text-muted-foreground font-medium">Smart Nutrition</p>
-                  </div>
-                </CarouselItem>
-                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1">
-                    <div className="overflow-hidden rounded-xl shadow-2xl transform hover:scale-110 hover:-rotate-1 transition-all duration-500 hover:shadow-accent/20">
-                      <img 
-                        src="https://images.unsplash.com/photo-1434596922112-19c563067271?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="Custom Workout Plans" 
-                        className="w-full h-64 object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                    </div>
-                    <p className="text-sm text-center mt-3 text-muted-foreground font-medium">Custom Workouts</p>
-                  </div>
-                </CarouselItem>
-              </CarouselContent>
-              <CarouselPrevious className="left-2 bg-background/80 backdrop-blur-sm border-white/20 hover:bg-primary/20" />
-              <CarouselNext className="right-2 bg-background/80 backdrop-blur-sm border-white/20 hover:bg-primary/20" />
-            </Carousel>
+          {/* Auto-Moving Health & Fitness Carousel */}
+          <div className="w-full max-w-5xl mx-auto mb-10">
+            <AutoCarousel />
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4">
@@ -133,6 +75,115 @@ const HeroSection = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const AutoCarousel = () => {
+  const [api, setApi] = React.useState<any>();
+
+  useEffect(() => {
+    if (!api) return;
+
+    const autoplay = () => {
+      api.scrollNext();
+    };
+
+    const interval = setInterval(autoplay, 3000);
+
+    const handlePointerDown = () => clearInterval(interval);
+    const handlePointerUp = () => {
+      clearInterval(interval);
+      setTimeout(() => {
+        const newInterval = setInterval(autoplay, 3000);
+      }, 1000);
+    };
+
+    const container = api.containerNode();
+    container.addEventListener('pointerdown', handlePointerDown);
+    container.addEventListener('pointerup', handlePointerUp);
+
+    return () => {
+      clearInterval(interval);
+      container.removeEventListener('pointerdown', handlePointerDown);
+      container.removeEventListener('pointerup', handlePointerUp);
+    };
+  }, [api]);
+
+  const healthCategories = [
+    {
+      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      title: "AI Fitness Coach",
+      description: "Smart workout planning"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      title: "Health Analytics",
+      description: "BMI & progress tracking"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2053&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      title: "Smart Nutrition",
+      description: "Personalized meal plans"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1434596922112-19c563067271?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      title: "Workout Plans",
+      description: "Custom exercise routines"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=2031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      title: "Mental Wellness",
+      description: "Meditation & mindfulness"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      title: "Sleep Tracking",
+      description: "Rest optimization"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      title: "Progress Monitor",
+      description: "Achievement tracking"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1506629905607-126f2f17f5c7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      title: "Hydration Goals",
+      description: "Water intake tracking"
+    }
+  ];
+
+  return (
+    <Carousel 
+      setApi={setApi}
+      className="w-full" 
+      opts={{ 
+        align: "start", 
+        loop: true 
+      }}
+    >
+      <CarouselContent className="-ml-2 md:-ml-4">
+        {healthCategories.map((category, index) => (
+          <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/4">
+            <div className="p-1">
+              <div className="overflow-hidden rounded-xl shadow-2xl transform hover:scale-110 hover:rotate-1 transition-all duration-500 hover:shadow-primary/20 relative group">
+                <img 
+                  src={category.image}
+                  alt={category.title} 
+                  className="w-full h-48 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  <p className="text-sm font-medium">{category.description}</p>
+                </div>
+              </div>
+              <p className="text-sm text-center mt-3 text-muted-foreground font-medium">{category.title}</p>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious className="left-2 bg-background/80 backdrop-blur-sm border-white/20 hover:bg-primary/20" />
+      <CarouselNext className="right-2 bg-background/80 backdrop-blur-sm border-white/20 hover:bg-primary/20" />
+    </Carousel>
   );
 };
 
