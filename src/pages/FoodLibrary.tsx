@@ -111,7 +111,7 @@ const FoodLibrary = () => {
           {/* Food category display with image */}
           {activeTab !== 'all' && (
             <div className="glass-card p-4 mb-8 rounded-lg flex items-center overflow-hidden">
-              <div className="h-16 w-16 rounded-full overflow-hidden mr-4 border-2 border-primary/20">
+              <div className="h-36 w-16 rounded-full overflow-hidden mr-4 border-2 border-primary/20">
                 <img 
                   src={getFoodCategoryImage(activeTab)} 
                   alt={foodCategories[activeTab].name}
