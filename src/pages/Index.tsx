@@ -29,14 +29,14 @@ const Index = () => {
               <FeatureCard 
                 title="AI Health Analysis" 
                 description="Advanced BMI analysis with personalized health insights and risk assessment."
-                imageSrc="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&auto=format&fit=crop&q=60"
+                imageSrc="https://images.unsplash.com/photo-1747224317387-ee2e7eaa865d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE4fHx8ZW58MHx8fHx8"
                 imageAlt="AI health analysis dashboard"
                 linkTo="/fitness"
               />
               <FeatureCard 
                 title="Smart Nutrition AI" 
                 description="Intelligent meal planning with South Asian cuisine and macro tracking."
-                imageSrc="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&auto=format&fit=crop&q=60"
+                imageSrc="https://images.unsplash.com/photo-1617170007444-368999506742?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c21hcnQlMjBudXRyaXRpb24lMjBBSXxlbnwwfHwwfHx8MA%3D%3D"
                 imageAlt="AI nutrition planning"
                 linkTo="/food-library"
               />
@@ -50,7 +50,7 @@ const Index = () => {
               <FeatureCard 
                 title="Intelligent Tracking" 
                 description="Real-time progress monitoring with predictive analytics and insights."
-                imageSrc="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&auto=format&fit=crop&q=60"
+                imageSrc="https://media.istockphoto.com/id/2215438850/photo/man-use-smart-watch-for-health-care-technology-monitoring-ai-analysis-body-to-report-and.jpg?s=612x612&w=0&k=20&c=TzJpzPgxca0QkOAnxMLB4Pj5_rkGZ81hkxjWP4OAXck="
                 imageAlt="AI progress tracking"
                 linkTo="/fitness"
               />
@@ -74,7 +74,7 @@ const Index = () => {
         </section>
         
         <section className="py-12 glass-effect relative overflow-hidden">
-          <div className="absolute inset-0 -z-10 opacity-20">
+          <div className="absolute inset-0 -z-10 opacity-30">
             <div className="absolute top-0 left-0 w-full h-full">
               <img 
                 src="https://media.istockphoto.com/id/2158539574/photo/kind-beautiful-woman-eating-a-healthy-fruit-bowl-while-sitting-on-the-table-in-the-kitchen-at.jpg?s=612x612&w=0&k=20&c=ZqFvECI1BcKV3OR9nUX86jukn8hgXHm0SYfI_Ozk4Hc=" 

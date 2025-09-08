@@ -91,7 +91,7 @@ export const foodDatabase: FoodItem[] = [
     protein: 12,
     carbs: 10,
     fat: 15,
-    image: 'https://images.unsplash.com/photo-1644697899303-ad0cda9b7b54?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    image: 'https://media.istockphoto.com/id/2190629199/photo/a-bowl-of-palak-paneer-an-indian-dish-with-spinach-curry-and-paneer-cubes-beside-a-dark-blue.jpg?s=612x612&w=0&k=20&c=rza67ZwGdjjbvVcVxj6kw6s9hQeXj1ky9W4ZbTrpx_M='
   },
   {
     id: 'veg-3',
@@ -102,7 +102,7 @@ export const foodDatabase: FoodItem[] = [
     protein: 4,
     carbs: 15,
     fat: 6,
-    image: 'https://images.unsplash.com/photo-1585032226651-759b2e71b3c5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    image: 'https://media.istockphoto.com/id/516316282/photo/indian-masala-fried-bhindi-or-ladyfinger-curry.jpg?s=612x612&w=0&k=20&c=IRTS-aCjpujiT5Y62vT3SKDGCcPg5GFtMu4Arl9ETjY='
   },
   
   // Lentils (Daal)
@@ -126,7 +126,7 @@ export const foodDatabase: FoodItem[] = [
     protein: 10,
     carbs: 25,
     fat: 3,
-    image: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    image: 'https://media.istockphoto.com/id/2151713393/photo/chana-masala-spicy-chickpea-curry-served-with-chapatis.jpg?s=612x612&w=0&k=20&c=Yv7gJAEyvY9LDvKMVcgsdxS2P10CqDilbgtwYVyC0mk='
   },
   {
     id: 'lentil-3',
@@ -161,7 +161,7 @@ export const foodDatabase: FoodItem[] = [
     protein: 28,
     carbs: 7,
     fat: 22,
-    image: 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    image: 'https://media.istockphoto.com/id/504338599/photo/tender-beef-nihari.jpg?s=612x612&w=0&k=20&c=slp7Wnsi03ICCR3c-fBa0DxxhQjhPiV92PKXSdVOsmU='
   },
   {
     id: 'meat-3',
@@ -185,7 +185,7 @@ export const foodDatabase: FoodItem[] = [
     protein: 4,
     carbs: 20,
     fat: 2,
-    image: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    image: 'https://media.istockphoto.com/id/2221989393/photo/close-up-shot-of-cooking-a-roti-or-chappati-being-roasted-puffed-and-swollen-on-a-blue-gas.jpg?s=612x612&w=0&k=20&c=x1yhBgVWuO2ppXDaN3AXfq1yn9gMMMr8mo3llo5fcc4='
   },
   {
     id: 'carb-2',
@@ -196,7 +196,7 @@ export const foodDatabase: FoodItem[] = [
     protein: 9,
     carbs: 50,
     fat: 4,
-    image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    image: 'https://media.istockphoto.com/id/2163461899/photo/tandoori-butter-naan-nan-nun-bread-or-roti-served-in-dish-isolated-dark-background-top-view.jpg?s=612x612&w=0&k=20&c=ItGdJwPvmzJhujtRl617soScU-IPJ_wjGmXXq2hn_zI='
   },
   {
     id: 'carb-3',
@@ -207,7 +207,7 @@ export const foodDatabase: FoodItem[] = [
     protein: 5,
     carbs: 45,
     fat: 0,
-    image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    image: 'https://media.istockphoto.com/id/2163722834/photo/basmati-rice-steaming-in-serving-bowl.jpg?s=612x612&w=0&k=20&c=zNGXckdRWNdg90bcRdWLy4DWenBhDRMeKE1-yk4F8sQ='
   },
   {
     id: 'carb-4',
@@ -218,7 +218,7 @@ export const foodDatabase: FoodItem[] = [
     protein: 6,
     carbs: 30,
     fat: 18,
-    image: 'https://images.unsplash.com/photo-1574653853027-5e5de1b3b97f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    image: 'https://media.istockphoto.com/id/618764348/photo/famous-asian-flat-bread-known-as-parathas.jpg?s=612x612&w=0&k=20&c=yrz3Gn1RIHw8ohxG0uGNAU1H8wa2dB6xRli_DD3PJ6o='
   },
   
   // Protein
@@ -242,7 +242,7 @@ export const foodDatabase: FoodItem[] = [
     protein: 6,
     carbs: 1,
     fat: 5,
-    image: 'https://images.unsplash.com/photo-1582169296194-7513f415c6d2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    image: 'https://media.istockphoto.com/id/520889612/photo/boiled-eggs-in-bowl.jpg?s=612x612&w=0&k=20&c=wwes11nnPnZu7IFz6SSSjhsfoBK-ZcTFsqH9Em72ClA='
   },
   {
     id: 'protein-3',
@@ -266,7 +266,7 @@ export const foodDatabase: FoodItem[] = [
     protein: 3,
     carbs: 10,
     fat: 7,
-    image: 'https://images.unsplash.com/photo-1597318378536-c46c5a3d3a5d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    image: 'https://media.istockphoto.com/id/2227639496/photo/image-of-glass-of-traditional-indian-chai-masala-tea-with-sweet-rose-water-authentic-india.jpg?s=612x612&w=0&k=20&c=2Xipzy1NN-W29vKst4g-lm20M8ONOr0jrl5H5TY9038='
   },
   {
     id: 'bev-2',
@@ -277,7 +277,7 @@ export const foodDatabase: FoodItem[] = [
     protein: 5,
     carbs: 15,
     fat: 8,
-    image: 'https://images.unsplash.com/photo-1562509120-582d67ccd96a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    image: 'https://media.istockphoto.com/id/1133529078/photo/masala.jpg?s=612x612&w=0&k=20&c=NxYvrfD5g0RRWdhVG7Mj8fo0DaTWHX5rtY2HGlHZJqs='
   },
   {
     id: 'bev-3',
@@ -301,7 +301,7 @@ export const foodDatabase: FoodItem[] = [
     protein: 2,
     carbs: 20,
     fat: 7,
-    image: 'https://images.unsplash.com/photo-1643133480671-deb9b85a2eec?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    image: 'https://media.istockphoto.com/id/2219610970/photo/gulab-jamun-in-plate.jpg?s=612x612&w=0&k=20&c=e-P4TlbluzLE2cv4MBeq5Sj4kIGPREI9fN46509ZehE='
   },
   {
     id: 'sweet-2',
@@ -312,7 +312,7 @@ export const foodDatabase: FoodItem[] = [
     protein: 1,
     carbs: 22,
     fat: 5,
-    image: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    image: 'https://media.istockphoto.com/id/2184678581/photo/jalebis.jpg?s=612x612&w=0&k=20&c=y7Af7eeFxI_GcjT0FmCFgPp4E7Un0NrdOLF0xX6HA6g='
   },
   {
     id: 'sweet-3',
@@ -323,7 +323,7 @@ export const foodDatabase: FoodItem[] = [
     protein: 4,
     carbs: 28,
     fat: 10,
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    image: 'https://media.istockphoto.com/id/506540011/photo/kheer-in-sand-pot.jpg?s=612x612&w=0&k=20&c=AXcDMX4jkvPGjyJB3jskwdEE3wU4CI9ln3tNLx3OuRg='
   }
 ];
 

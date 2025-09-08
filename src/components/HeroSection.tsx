@@ -79,6 +79,7 @@ const HeroSection = () => {
 };
 
 const AutoCarousel = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [api, setApi] = React.useState<any>();
 
   useEffect(() => {
@@ -116,12 +117,12 @@ const AutoCarousel = () => {
       description: "Smart workout planning"
     },
     {
-      image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image: "https://media.istockphoto.com/id/1480239160/photo/an-analyst-uses-a-computer-and-dashboard-for-data-business-analysis-and-data-management.jpg?s=612x612&w=0&k=20&c=Zng3q0-BD8rEl0r6ZYZY0fbt2AWO9q_gC8lSrwCIgdk=",
       title: "Health Analytics",
       description: "BMI & progress tracking"
     },
     {
-      image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2053&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image: "https://media.istockphoto.com/id/1331919924/photo/technology-makes-life-so-much-easier-for-young-asian-woman-using-mobile-app-device-on.jpg?s=612x612&w=0&k=20&c=8MFgliNHfNLWxUjpZWcNtSs4dndEYQEU491ll5WF0_s=",
       title: "Smart Nutrition",
       description: "Personalized meal plans"
     },
@@ -131,22 +132,22 @@ const AutoCarousel = () => {
       description: "Custom exercise routines"
     },
     {
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=2031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image: "https://media.istockphoto.com/id/2070585218/photo/happy-smiling-face-mental-health-concept-positive-thinking-and-attitude-emotion-support-and.jpg?s=612x612&w=0&k=20&c=3bdrVxMevqYk6yK7qFLZiWqNN9eGUwK0mcnv62eKgxw=",
       title: "Mental Wellness",
       description: "Meditation & mindfulness"
     },
     {
-      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image: "https://media.istockphoto.com/id/2211457357/photo/smartwatch-for-sleeping-tracking.webp?a=1&b=1&s=612x612&w=0&k=20&c=-lW_9CWBtmWzUPtMyTcuuxEC92Ckp7Cj1xHilld2Lso=",
       title: "Sleep Tracking",
       description: "Rest optimization"
     },
     {
-      image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image: "https://media.istockphoto.com/id/2209325680/photo/investor-reviewing-real-time-financial-performance-pie-charts-and-investment-metrics-using.jpg?s=612x612&w=0&k=20&c=-akDXWHAm-lKnne22_oT5-b59XlbNcNUyu2TZuH-gIs=",
       title: "Progress Monitor",
       description: "Achievement tracking"
     },
     {
-      image: "https://images.unsplash.com/photo-1506629905607-126f2f17f5c7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image: "https://media.istockphoto.com/id/2213560189/photo/man-tracking-daily-water-intake-using-a-mobile-app.jpg?s=612x612&w=0&k=20&c=jfvmzS0XOrX8lPiRddrKbaCw8eUxreKkre5bWnMgKnY=",
       title: "Hydration Goals",
       description: "Water intake tracking"
     }
