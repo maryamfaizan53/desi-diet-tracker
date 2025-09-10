@@ -51,6 +51,16 @@ export const MealProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [meals, setMeals] = useState<MealPlan>(loadStoredMeals);
   const [totalCalories, setTotalCalories] = useState(0);
   
+  // Calculate total calories from all meals
+  const calculateTotalCalories = React.useCallback(() => {
+    const allMeals = [...meals.breakfast, ...meals.lunch, ...meals.dinner, ...meals.snacks];
+    const total = allMeals.reduce((sum, item) => {
+      return sum + (item.food.calories * item.quantity);
+    }, 0);
+    
+    setTotalCalories(total);
+  }, [meals]);
+  
   // Calculate total calories whenever meals change
   useEffect(() => {
     calculateTotalCalories();
@@ -59,17 +69,7 @@ export const MealProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (typeof window !== 'undefined') {
       localStorage.setItem('desiDietMeals', JSON.stringify(meals));
     }
-  }, [meals]);
-  
-  // Calculate total calories from all meals
-  const calculateTotalCalories = () => {
-    const allMeals = [...meals.breakfast, ...meals.lunch, ...meals.dinner, ...meals.snacks];
-    const total = allMeals.reduce((sum, item) => {
-      return sum + (item.food.calories * item.quantity);
-    }, 0);
-    
-    setTotalCalories(total);
-  };
+  }, [meals, calculateTotalCalories]);
   
   // Add a food item to a meal
   const addToMeal = (mealType: MealType, foodItem: FoodItem, quantity: number) => {
