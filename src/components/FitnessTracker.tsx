@@ -13,6 +13,11 @@ import {
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
 
+interface UserProfile {
+  calorieTarget?: number;
+  // add other fields as needed
+}
+
 interface FitnessStats {
   caloriesBurned: number;
   workoutsCompleted: number;
@@ -22,7 +27,7 @@ interface FitnessStats {
 }
 
 const FitnessTracker = () => {
-  const { userProfile } = useUser();
+  const { userProfile }: { userProfile?: UserProfile } = useUser();
   const [stats] = useState<FitnessStats>({
     caloriesBurned: 1250,
     workoutsCompleted: 4,
@@ -32,7 +37,7 @@ const FitnessTracker = () => {
   });
 
   const weeklyProgress = (stats.activeMinutes / stats.weeklyGoal) * 100;
-  const calorieGoal = userProfile?.calorieTarget || 2000;
+  const calorieGoal = userProfile?.calorieTarget ?? 2000;
   const calorieProgress = (stats.caloriesBurned / (calorieGoal * 0.3)) * 100; // 30% of daily calories as exercise goal
 
   const achievements = [

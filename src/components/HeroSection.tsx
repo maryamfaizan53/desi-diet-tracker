@@ -50,6 +50,9 @@ const HeroSection = () => {
             </Button>
           </div>
 
+          
+          
+          {/* Features Grid */}
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-4xl">
             <FeatureCard 
               title="AI Health Analysis" 
@@ -72,6 +75,9 @@ const HeroSection = () => {
               iconClass="animate-pulse-glow"
             />
           </div>
+
+
+          
         </div>
       </div>
     </div>

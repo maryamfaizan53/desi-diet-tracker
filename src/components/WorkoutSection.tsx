@@ -12,6 +12,7 @@ interface Exercise {
   calories: number;
   description: string;
   image: string;
+  videoUrl?: string; 
 }
 
 interface Workout {
@@ -20,6 +21,7 @@ interface Workout {
   exercises: Exercise[];
   totalTime: string;
   image: string;
+  videoUrl?: string; 
 }
 
 const WorkoutSection = () => {
@@ -32,6 +34,7 @@ const WorkoutSection = () => {
       description: 'High-intensity cardio workout to burn calories and improve cardiovascular health',
       totalTime: '30 mins',
       image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=60',
+      videoUrl: "https://www.youtube.com/shorts/DCpar5QDo6E",
       exercises: [
         {
           name: 'Jumping Jacks',
@@ -39,7 +42,8 @@ const WorkoutSection = () => {
           difficulty: 'beginner',
           calories: 50,
           description: 'Full-body cardio exercise that increases heart rate',
-          image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&auto=format&fit=crop&q=60'
+          image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&auto=format&fit=crop&q=60',
+          videoUrl: "https://www.youtube.com/shorts/dGRoJ0vKIls"
         },
         {
           name: 'High Knees',
@@ -47,7 +51,8 @@ const WorkoutSection = () => {
           difficulty: 'beginner',
           calories: 40,
           description: 'Running in place with knees lifted high',
-          image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&auto=format&fit=crop&q=60'
+          image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&auto=format&fit=crop&q=60',
+          videoUrl: "https://www.youtube.com/shorts/9xuYXOzImy8"
         },
         {
           name: 'Burpees',
@@ -55,7 +60,8 @@ const WorkoutSection = () => {
           difficulty: 'advanced',
           calories: 80,
           description: 'Full-body explosive movement combining squat, push-up, and jump',
-          image: 'https://images.unsplash.com/photo-1549476464-37392f717541?w=400&auto=format&fit=crop&q=60'
+          image: 'https://images.unsplash.com/photo-1549476464-37392f717541?w=400&auto=format&fit=crop&q=60',
+          videoUrl: "https://www.youtube.com/shorts/oUOeCtL0lg4"
         }
       ]
     },
@@ -64,6 +70,7 @@ const WorkoutSection = () => {
       description: 'Build muscle and increase strength with resistance exercises',
       totalTime: '45 mins',
       image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&auto=format&fit=crop&q=60',
+      videoUrl:"https://www.youtube.com/shorts/N7DR0XB1Xr0",
       exercises: [
         {
           name: 'Push-ups',
@@ -71,7 +78,8 @@ const WorkoutSection = () => {
           difficulty: 'intermediate',
           calories: 30,
           description: 'Upper body strength exercise targeting chest, shoulders, and triceps',
-          image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&auto=format&fit=crop&q=60'
+          image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&auto=format&fit=crop&q=60',
+          videoUrl: "https://www.youtube.com/shorts/elYHdp1Tfgo"
         },
         {
           name: 'Squats',
@@ -79,7 +87,8 @@ const WorkoutSection = () => {
           difficulty: 'beginner',
           calories: 40,
           description: 'Lower body exercise targeting quads, glutes, and core',
-          image: 'https://images.unsplash.com/photo-1566241440091-ec10de8db2e1?w=400&auto=format&fit=crop&q=60'
+          image: 'https://images.unsplash.com/photo-1566241440091-ec10de8db2e1?w=400&auto=format&fit=crop&q=60',
+          videoUrl: "https://www.youtube.com/shorts/T6id8FuUcao"
         },
         {
           name: 'Plank',
@@ -87,7 +96,8 @@ const WorkoutSection = () => {
           difficulty: 'intermediate',
           calories: 20,
           description: 'Core strengthening isometric exercise',
-          image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&auto=format&fit=crop&q=60'
+          image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&auto=format&fit=crop&q=60',
+          videoUrl: "https://www.youtube.com/shorts/j6WVxGJZv5Y"
         }
       ]
     },
@@ -96,6 +106,7 @@ const WorkoutSection = () => {
       description: 'Improve flexibility, balance, and mental well-being',
       totalTime: '40 mins',
       image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60',
+      videoUrl: "https://www.youtube.com/watch?v=1G5q66RExDU",
       exercises: [
         {
           name: 'Sun Salutation',
@@ -103,7 +114,8 @@ const WorkoutSection = () => {
           difficulty: 'beginner',
           calories: 30,
           description: 'A sequence of yoga poses to warm up the body',
-          image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&auto=format&fit=crop&q=60'
+          image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&auto=format&fit=crop&q=60',
+          videoUrl: "https://www.youtube.com/watch?v=ZP34IA0d8LI"
         },
         {
           name: 'Warrior Poses',
@@ -111,7 +123,8 @@ const WorkoutSection = () => {
           difficulty: 'intermediate',
           calories: 40,
           description: 'Standing poses that build strength and stability',
-          image: 'https://images.unsplash.com/photo-1506629905607-bb5ab8b56d0c?w=400&auto=format&fit=crop&q=60'
+          image: 'https://images.unsplash.com/photo-1506629905607-bb5ab8b56d0c?w=400&auto=format&fit=crop&q=60',
+          videoUrl: "https://www.youtube.com/shorts/56hnUF1scTE"
         },
         {
           name: 'Relaxation Poses',
@@ -119,7 +132,8 @@ const WorkoutSection = () => {
           difficulty: 'beginner',
           calories: 20,
           description: 'Gentle stretches and meditation poses',
-          image: 'https://images.unsplash.com/photo-1447452001602-7090c7ab2db3?w=400&auto=format&fit=crop&q=60'
+          image: 'https://images.unsplash.com/photo-1447452001602-7090c7ab2db3?w=400&auto=format&fit=crop&q=60',
+          videoUrl:"https://www.youtube.com/shorts/NNOezl8sQRk"
         }
       ]
     }
@@ -239,6 +253,7 @@ const WorkoutSection = () => {
                         variant="outline" 
                         size="sm"
                         className="flex-shrink-0"
+                        onClick={() => window.open(exercise.videoUrl, "_blank")}
                       >
                         <Play className="w-4 h-4 mr-1" />
                         Start

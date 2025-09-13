@@ -20,7 +20,7 @@ const BMICalculator = () => {
   const [weight, setWeight] = useState(userProfile?.weight || 70);
   const [result, setResult] = useState<BMIResult | null>(null);
 
-  const calculateBMI = () => {
+  const calculateBMI = React.useCallback(() => {
     const heightInMeters = height / 100;
     const bmi = weight / (heightInMeters * heightInMeters);
     
@@ -67,13 +67,13 @@ const BMICalculator = () => {
     }
 
     setResult({ bmi: parseFloat(bmi.toFixed(1)), category, color, recommendations });
-  };
+  }, [height, weight]);
 
   useEffect(() => {
     if (height && weight) {
       calculateBMI();
     }
-  }, [height, weight]);
+  }, [height, weight, calculateBMI]);
 
   return (
     <Card className="glass-card">
