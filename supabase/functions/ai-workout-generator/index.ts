@@ -13,8 +13,8 @@ serve(async (req: Request) => {
 
   try {
     const supabaseClient = createClient(
-      Deno.env.get("SUPABASE_URL") ?? "",
-      Deno.env.get("SUPABASE_ANON_KEY") ?? ""
+      Deno.env.get("SUPABASE_URL") ?? "https://wkjvsqozzbbucpzbcvqy.supabase.co",
+      Deno.env.get("SUPABASE_ANON_KEY") ?? "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndranZzcW96emJidWNwemJjdnF5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg2NTI2MzEsImV4cCI6MjA3NDIyODYzMX0.7w_Yq3LlfqjFUGVyTVw4muNHCXeIVg78NgxOqARNvUA"
     );
 
     const authHeader = req.headers.get("authorization")!;
